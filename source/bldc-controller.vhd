@@ -27,10 +27,19 @@ architecture bldc_controller_arch of bldc_controller is
     signal cmd : integer := 0;
 begin
 
+    -- Calcul du rapport cyclique ajusté
     P_DUTY : process(clk)
+        variable res : integer;
     begin
         if rising_edge(clk) then
-            cmd <= MAX_CPT - ((MAX_CPT * to_integer(unsigned(duty))) / 256);
+            res := MAX_CPT - ((MAX_CPT * to_integer(unsigned(duty))) / 256);
+            if res <= (MAX_CPT / 10) then  -- 10% de MAX_CPT
+                cmd <= MAX_CPT / 10;
+            elsif res >= (MAX_CPT * 9 / 10) then  -- 90% de MAX_CPT
+                cmd <= MAX_CPT * 9 / 10;
+            else
+                cmd <= res;
+            end if;
         end if;
     end process;
     

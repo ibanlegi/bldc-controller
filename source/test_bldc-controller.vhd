@@ -12,7 +12,7 @@ ARCHITECTURE testbench OF bldc_controller_tb IS
     SIGNAL en_tb     : std_logic := '1';
     SIGNAL rst_tb    : std_logic := '0';
     SIGNAL h_tb      : std_logic_vector(2 downto 0) := "000";
-    SIGNAL duty_tb   : std_logic_vector(7 downto 0) := "10000000"; -- 50% de duty cycle
+    SIGNAL duty_tb   : std_logic_vector(7 downto 0) := "11111111"; -- 50% de duty cycle
     SIGNAL U_tb, V_tb, W_tb : std_logic;
     SIGNAL Un_tb, Vn_tb, Wn_tb : std_logic;
     
