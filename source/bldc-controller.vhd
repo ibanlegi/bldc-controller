@@ -25,6 +25,8 @@ architecture bldc_controller_arch of bldc_controller is
     signal counter : integer := 0;
     signal step    : integer := 0;
     signal cmd : integer := 0;
+    --signal rampUp : integer := 0;
+    --signal rampDown : integer := 0;
 begin
 
     -- Calcul du rapport cyclique ajusté
