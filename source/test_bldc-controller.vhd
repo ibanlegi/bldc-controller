@@ -20,24 +20,27 @@ ARCHITECTURE testbench OF bldc_controller_tb IS
     CONSTANT clk_period : time := 1000 ns; -- 1 MHz
 
     -- Composant à tester
-    COMPONENT bldc_controller
-        GENERIC ( MAX_CPT : integer );
-        PORT (
-            clk  : IN  std_logic;
-            en   : IN  std_logic;
-            rst  : IN  std_logic;
-            h    : IN  std_logic_vector(2 downto 0);
-            duty : IN  std_logic_vector(7 downto 0);
-            U, V, W : OUT std_logic;
-            Un, Vn, Wn : OUT std_logic
-        );
-    END COMPONENT;
+--    COMPONENT bldc_controller
+--        GENERIC ( MAX_CPT : 20000 );
+--        PORT (
+--            clk  : IN  std_logic;
+--            en   : IN  std_logic;
+--            rst  : IN  std_logic;
+--            h    : IN  std_logic_vector(2 downto 0);
+--            duty : IN  std_logic_vector(7 downto 0);
+--            U, V, W : OUT std_logic;
+--            Un, Vn, Wn : OUT std_logic
+--        );
+--    END COMPONENT;
 
 BEGIN
     
     -- Instanciation du contrôleur BLDC
     uut: entity work.bldc_controller
-    GENERIC MAP ( MAX_CPT => 20000 ) -- Valeur fictive pour la simulation
+    GENERIC MAP ( 
+        FREQ_CLK => 1E6,
+        MOTOR_CYCLE => 50
+    ) -- Valeur fictive pour la simulation
     PORT MAP (
         clk  => clk_tb,
         en   => en_tb,
@@ -68,7 +71,7 @@ BEGIN
     BEGIN
         -- Reset au début
         rst_tb <= '1';
-        WAIT FOR 10 ns;
+        WAIT FOR clk_period;
         rst_tb <= '0';
         
         -- Modification du duty cycle pour tester différentes valeurs
@@ -77,9 +80,9 @@ BEGIN
 --        WAIT FOR 100 ns;
 --        duty_tb <= "01000000"; -- 25%
     
-        WAIT FOR 500000 ns;
-        
-        --duty_tb <= "11111000"; -- 25%
+        WAIT FOR 500000000 ns;
+       
+        duty_tb <= "00001111"; -- 25%
         
         -- Fin de simulation
         --WAIT FOR 50000 ns;
