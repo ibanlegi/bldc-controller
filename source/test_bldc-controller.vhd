@@ -23,30 +23,13 @@ architecture sim of bldc_controller_tb is
     signal Vn              : std_logic;
     signal Wn              : std_logic;
 
-    -- Composant à tester
-    component bldc_controller
-        generic (
-            FREQ_CLK     : integer := 1000000;  -- Fréquence_CLK (1 MHz)
-            MOTOR_CYCLE  : integer := 50         -- Cycle de phase du moteur (50 Hz)
-        );
-        port (
-            clk     : in std_logic;
-            en      : in std_logic;
-            rst     : in std_logic;
-            h       : in std_logic;
-            duty    : in std_logic_vector(7 downto 0);
-            U       : out std_logic;
-            V       : out std_logic;
-            W       : out std_logic;
-            Un      : out std_logic;
-            Vn      : out std_logic;
-            Wn      : out std_logic
-        );
-    end component;
-
 begin
     -- Instantiation du contrôleur BLDC
-    uut: bldc_controller
+    uut: entity work.bldc_controller
+        generic map (
+            FREQ_CLK     => 1000000,  -- Fréquence_CLK (1 MHz)
+            MOTOR_CYCLE  => 50         -- Cycle de phase du moteur (50 Hz)
+        )
         port map (
             clk     => clk,
             en      => en,
