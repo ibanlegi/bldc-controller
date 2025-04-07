@@ -23,7 +23,7 @@ architecture bldc_controller_arch of bldc_controller is
     signal counter : integer := 0;                          -- Compteur interne pour le timing des phases montantes et descendantes
     signal step    : integer := 0;                          -- Etape de la séqeunce de commande (Pour la machine à état)
     signal cmd : integer := 0;                              -- Etape lors d'une rampe d'une phase
-    signal cmd_before : integer := 0;                     -- Précédente étape lors d'une rampe d'une phase
+    signal cmdBefore : integer := 0;                     -- Précédente étape lors d'une rampe d'une phase
     signal rampUp : integer := 0;                           -- Valeur max d'une rampe lors de la phase de montée
     signal rampDown : integer := 0;                         -- Valeur max d'une rampe lors de la phase de descente
     signal rapport : integer := 0;                          -- Rapport entre la montée et la descente
@@ -42,7 +42,7 @@ begin
             counter <= 0;
             step <= 1;
             cmd <= 0;
-            cmd_before <= 0;
+            cmdBefore <= 0;
             rampUp <= 0;
             rampDown <= 0;
             rapport <= 0;
@@ -55,7 +55,7 @@ begin
                     counter <= 0;
                     step <= 1;
                     cmd <= 0;
-                    cmd_before <= 0;
+                    cmdBefore <= 0;
                     rampUp <= 0;
                     rampDown <= 0;
                     rapport <= 0;
@@ -91,24 +91,24 @@ begin
             cmd <= res + delta;
     
             -- Initialisation ou ajustement des rampes
-            if cmd_before = 0 then -- Cas initial : On part de MAX_CPT
+            if cmdBefore = 0 then -- Cas initial : On part de MAX_CPT
                 rampUp <= MAX_CPT;
                 rapport <= MAX_CPT - cmd;
                 stepRamp <= rapport / 40;
                 rampDown <= 0;
-            elsif cmd > cmd_before then -- Cas d'augmentation de la vitesse : On part du cmd précédent
-                rampUp <= cmd_before;
-                rapport <= cmd - cmd_before;
+            elsif cmd > cmdBefore then -- Cas d'augmentation de la vitesse : On part du cmd précédent
+                rampUp <= cmdBefore;
+                rapport <= cmd - cmdBefore;
                 stepRamp <= rapport / 40;
                 rampDown <= 0;
-            elsif cmd < cmd_before then -- Cas de diminution de la vitesse : On part du cmd précédent
-                rampDown <= cmd_before;
-                rapport <= cmd_before - cmd;
+            elsif cmd < cmdBefore then -- Cas de diminution de la vitesse : On part du cmd précédent
+                rampDown <= cmdBefore;
+                rapport <= cmdBefore - cmd;
                 stepRamp <= rapport / 40;
                 rampUp <= 0;
             end if;
     
-            cmd_before <= cmd;
+            cmdBefore <= cmd;
     
             -- Gestion du compteur
             if rapport /= 0 then
@@ -168,7 +168,7 @@ begin
 --                counter <= 0;
 --                step <= 1;
 --                cmd <= 0;
---                cmd_before <= 0;
+--                cmdBefore <= 0;
 --                rampUp <= 0;
 --                rampDown <= 0;
 --                rapport <= 0;
