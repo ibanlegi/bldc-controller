@@ -60,39 +60,32 @@ begin
         wait for 20 ns;
         rst <= '0';
         
-        -- Test avec des valeurs de duty et h
-        duty <= "01000000";  -- 50% de cycle
---        h <= '0';            -- Pas de détection de Hall (pas de tour complet)
---        wait for 100 ns;
+        -- SCENARIO 1 : Duty normal à 50%, sans signal Hall
+        --------------------------------------------------
+        duty <= "10000000";  -- 128 = 50%
+        h <= '0';
+        wait for 2 sec;
         
---        duty <= "11000000";  -- 75% de cycle
---        h <= '1';            -- Détection de Hall (1 tour complet simulé)
---        wait for 100 ns;
+        -- SCENARIO 2 : Duty faible à 25%
+        --------------------------------------------------
+        duty <= "01000000";  -- 64 = 25%
+        h <= '0';
+        wait for 2 sec;
         
---        duty <= "10000000";  -- 62.5% de cycle
---        h <= '0';            -- Pas de détection de Hall
---        wait for 100 ns;
-        
---        duty <= "00000000";  -- 0% de cycle
---        h <= '0';            -- Pas de détection de Hall
-        wait for 2500 ms;
-        
-        duty <= "11111111";  -- 100% de cycle
---        h <= '1';            -- Détection de Hall
---        wait for 100 ns;
-        
---        duty <= "01111111";  -- 50% de cycle
---        h <= '0';            -- Pas de détection de Hall
---        wait for 100 ns;
-        
-        -- Simulation de plusieurs tours (chaque tour = 6 steps = 6 * période moteur)
-        for i in 0 to 4 loop  -- 5 cycles moteurs complets
-            wait for 120 ms; -- durée approximative d'un tour à 50Hz (1 cycle = 20ms, donc 6 steps = 120ms)
-            h <= '1';        -- déclenchement du capteur Hall (détection d'un tour)
-            wait for 10 ms;
-            h <= '0';        -- retour à l'état normal
+        -- SCENARIO 3 : Test avec signal Hall actif (simulateur d’un tour)
+        --------------------------------------------------
+        duty <= "11000000";  -- 192 = 75%
+        for i in 0 to 4 loop  -- Simule 5 fronts montants Hall
+            wait for 120 ms;
+            h <= '1';         -- Détection front montant
+            wait for 1 ms;
+            h <= '0';         -- Retour à 0
         end loop;
+        
         -- Fin de simulation
+        --------------------------------------------------
+        wait for 10 sec;
+        assert false report "Fin de simulation (10s atteintes)" severity failure;
         wait;
     end process;
 
