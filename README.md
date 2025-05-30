@@ -30,5 +30,5 @@ The context of the lab focuses on controlling a BLDC motor retrieved from a hard
 
 ## Reference
 
-This work is inspired by content from [Elektor Magazine – BLDC Beginner’s Guide](https://www.elektormagazine.fr/articles/contr%C3%B4le-des-moteurs-bldc-guide-du-d%C3%A9butant), as well as lectures and guidance provided by **Dr. François Thiebolt (IRIT)**.
+This work is inspired by content from [Elektor Magazine – BLDC Beginner’s Guide](https://www.elektormagazine.fr/articles/contr%C3%B4le-des-moteurs-bldc-guide-du-d%C3%A9butant), as well as lectures and guidance provided by **Dr. THIBEOLT François (IRIT)**.
 
