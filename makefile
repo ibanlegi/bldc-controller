@@ -19,6 +19,10 @@ GTKWAVE_CMD = gtkwave
 # Nom de l'entité de test
 TEST_ENTITY = bldc_controller_tb
 
+# Crée le dossier sim s'il n'existe pas
+$(SIM_DIR):
+	@mkdir -p $(SIM_DIR)
+
 # Cible par défaut (lorsqu'on fait `make` sans arguments)
 all: a e r
 
