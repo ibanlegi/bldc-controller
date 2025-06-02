@@ -1,5 +1,5 @@
 # Dossier contenant les fichiers VHDL
-VHDL_DIR = sources
+VHDL_DIR = src
 
 # Définition des fichiers VHDL par défaut
 VHDL_FILES = $(VHDL_DIR)/bldc-controller.vhd $(VHDL_DIR)/test_bldc-controller.vhd
