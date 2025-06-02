@@ -1,6 +1,6 @@
 # BLDC Controller
 
-### Master 1 Informatique - UE Simulation et Synthèse des Matérielles
+### Master 1 Informatique - UE Simulation et Synthèse des Matériels
 ### Université de Toulouse / Faculté des Sciences et de l'Ingénieur
 ### 2024–2025 Academic year
 
