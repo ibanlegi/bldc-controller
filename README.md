@@ -27,12 +27,16 @@ This repository contains the implementation of a **BLDC (Brushless Direct Curren
 
 The context of the lab focuses on controlling a BLDC motor retrieved from a hard drive, offering a safer and cost-effective platform for development and testing.
 
+<p align="center">
+  <img src="./elec_diag.png" alt="BLDC Schematic" width="500"/>
+</p>
+
 ## Files Description
 
+* [`Subject.pdf`](./Subject.pdf): Lab manual describing the objectives, theory, and instructions for the lab work.
+* [`FR_CR_bldc-controller.pdf`](./FR_CR_bldc-controller.pdf) : The report produced explains the techniques used and the results obtained. _[FR version]_
 * [`bldc_controller.vhdl`](./src/bldc-controller.vhd): Main VHDL component implementing the BLDC controller logic.
 * [`test_bldc-controller.vhdl`](./src/test_bldc-controller.vhd): Testbench for simulating and verifying the controller behavior.
-* [`Subject.pdf`](./Subject.pdf): Lab manual describing the objectives, theory, and instructions for the lab work.
-* [`FR_CR_bldc-controller.pdf`](./FR_CR_bldc-controller.pdf) : The report produced explains the techniques used and the results obtained. [French version]
 
 ## Running Simulations with Makefile
 
