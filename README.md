@@ -5,8 +5,10 @@
 ### 2024–2025 Academic year
 
 ## Authors
-* LEGINYORA Iban
-* CLUZEL Paul
+- <a href="https://github.com/ibanlegi"><img src="https://github.com/ibanlegi.png" width="25" height="25" style="border-radius: 50%; vertical-align: middle;"/></a> LEGINYORA Iban
+- <a href="https://github.com/Kappa2727"><img src="https://github.com/Kappa2727.png" width="25" height="25" style="border-radius: 50%; vertical-align: middle;"/></a> CLUZEL Paul
+
+
 
 ## Table of Contents
 1. [Project Description](#project-description)
